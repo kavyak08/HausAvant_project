@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+            <div class="col-md-12" w-1000>
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table table-striped project-orders-table">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>MRP</th>
+                        <th>Country</th>
+                        <th>Manufactured by</th>
+                        <th>Description</th>
+                        <th>Image1</th>
+                        <th>Image2</th>
+                        <th>Image3</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                            {% for d in prod %}
+                                <tr>
+                                    <td>{{d.category}}</td>
+                                    <td>{{d.Product}}</td>
+                                    <td>{{d.Quantity}}</td>
+                                    <td>{{d.Price}}</td>
+                                    <td>{{d.Country}}</td>
+                                    <td>{{d.Manufacture}}</td>
+                                    <td>{{d.Description}}</td>
+
+                                    <td>
+                                        <img src="{{d.Image1.url}}" width="70px" height="70px">
+                                    </td>
+                                    <td>
+                                        <img src="{{d.Image2.url}}" width="70px" height="70px">
+                                      </td>
+                                    <td>
+                                        <img src="{{d.Image3.url}}" width="70px" height="70px">
+                                    </td>
+
+                                    <td><a class="btn btn-sm btn-success" href="{% url 'edit_product' prod_id=d.id %}">
+                                        Edit  <i class="typcn typcn-edit btn-icon-append"></i></a>
+
+
+                                    <a class="btn btn-danger btn-sm btn-icon-text" href="{% url 'delete_product' prod_id=d.id %}">
+                                      Delete
+                                      <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                                    </a>
+
+                                  </td>
+
+                                </tr>
+                            {% endfor %}
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+</body>
+</html>
+{% endblock %}

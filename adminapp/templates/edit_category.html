@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add New Category</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="POST" action="{% url 'update_category' cat_id=cat.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Category Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Category Name" name="cname" value="{{cat.Category}}">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputEmail3">Duration</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Duration" name="time">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputPassword4">Fees</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Amount" name="fee">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+                    <div class="form-group">
+                      <label>Upload Category Image</label>
+<!--                      <input type="file" name="img[]" class="file-upload-default">-->
+<!--                        <input type="file" class="file-upload-default">-->
+                      <div class="input-group col-xs-12">
+                        <img src="{{cat.Image.url}}"width="60px" height="60px">
+                        <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="img">
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                        </span>-->
+                      </div>
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputCity1">Duration</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Duration">-->
+<!--                    </div>-->
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Description" name="desc">{{cat.Description}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Update Category</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+{% endblock %}
+</html>

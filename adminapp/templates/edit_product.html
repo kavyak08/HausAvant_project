@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Product</h4>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="POST" action="{% url 'update_product' prod_id=prod.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleSelectGender">Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="category">
+                          <option>{{prod.category}}</option>
+                          {% for j in cat %}
+                          <option>{{j.Category}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Product Name" name="pname" value="{{prod.Product}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Quantity</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Quantity" name="qty" value="{{prod.Quantity}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Price</label>
+                      <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Price" name="amt" value="{{prod.Price}}">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputPassword4">Mobile</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Mobile" name="mob">-->
+<!--                    </div>-->
+
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Country</label>
+                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Country of origin" name="cntry" value="{{prod.Country}}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Manufactued by</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Manufactured by" name="manu">{{prod.Manufacture}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Description by" name="desc">{{prod.Description}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Product Picture</label>
+<!--                      <input type="file" name="img[]" class="file-upload-default">-->
+                      <div class="input-group col-xs-12">
+                          <img src="{{prod.Image1.url}}" width="60px" height="60px">
+                          <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="img1">
+                          <img src="{{prod.Image2.url}}" width="60px" height="60px">
+                          <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="img2">
+                          <img src="{{prod.Image3.url}}" width="60px" height="60px">
+                          <input type="file" class="form-control file-upload-info"  placeholder="Upload Image" name="img3">
+
+
+<!--                        <span class="input-group-append">-->
+
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                        </span>-->
+                      </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Update Product</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+</body>
+</html>
+{% endblock %}
